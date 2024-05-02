@@ -4,6 +4,8 @@ import app from './app.js';
 import fetch from 'node-fetch';
 import Coin from "./models/list.model.js";
 
+
+
 const getCoins = async () => {
     try {
         const mylist = await fetch("https://api.coingecko.com/api/v3/coins/list?x_cg_demo_api_key=CG-mF3NsSk2de9YfX6NSMbScsCQ");
@@ -20,6 +22,12 @@ const getCoins = async () => {
         console.error("Error fetching or saving coins:", error);
     }
 };
+
+
+getCoins();
+
+const interval = 3600000; //in ms
+setInterval(getCoins, interval);
 
 let server;
 mongoose.connect(MONGO_URI)
