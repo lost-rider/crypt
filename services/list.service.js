@@ -17,3 +17,5 @@ const getCoins = async () => {
     return response;
 
 }
+
+export default {listService}

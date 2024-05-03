@@ -8,12 +8,13 @@ import Coin from "./models/list.model.js";
 
 const getCoins = async () => {
     try {
-        const mylist = await fetch("https://api.coingecko.com/api/v3/coins/list?x_cg_demo_api_key=CG-mF3NsSk2de9YfX6NSMbScsCQ");
+        const mylist = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd");
         const response = await mylist.json();
         for (let i = 0; i < response.length; i++) {
             const coin = new Coin({
                 name: response[i]['name'],
                 id: response[i]['id'],
+                current_price:response[i]['current_price']
             });
             await coin.save();
         }
